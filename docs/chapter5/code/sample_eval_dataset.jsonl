@@ -1,0 +1,4 @@
+{"id":"eval-001","image":"images/sample_ui.png","question":"这张截图的主要功能区域是什么？","reference":"界面主要展示了任务列表和操作按钮。","tags":["ui","description"]}
+{"id":"eval-002","image":"images/sample_error.png","question":"截图中最关键的报错信息是什么？","reference":"数据库连接失败。","tags":["screenshot","error"]}
+{"id":"eval-003","image":"images/sample_chart.png","question":"图表整体趋势是上升、下降还是波动？","reference":"整体趋势上升。","tags":["chart","reasoning"]}
+

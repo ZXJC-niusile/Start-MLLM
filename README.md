@@ -1,0 +1,152 @@
+<div align="center">
+  <h1>Start-MLLM</h1>
+  <h3>从零开始学习多模态大模型</h3>
+  <p><em>从概念、架构、训练到部署，系统搭建你的第一套 MLLM 知识体系</em></p>
+</div>
+
+---
+
+## 🎯 项目介绍
+
+`Start-MLLM` 是一个面向中文学习者的多模态大模型教程项目，定位为“能读懂、能跑通、能继续扩展”的开源学习仓库。项目参考了 `base-llm`、`handy-ollama`、`happy-llm`、`hello-agents`、`self-llm` 这些教程仓库的组织方式，采用：
+
+- `README.md` 负责整体导航
+- `docs/` 负责章节正文
+- `docs/_sidebar.md` 负责在线阅读导航
+- `docs/chapter*/code/` 负责放置配套示例代码
+
+这份教程的核心目标不是罗列概念，而是帮你建立一条完整的多模态学习链路：
+
+1. 先理解什么是多模态大模型，以及它与传统 CV、NLP、LLM 的关系。
+2. 再理解视觉编码器、跨模态对齐、投影层和生成式架构是怎么工作的。
+3. 接着学习数据、训练、评测、部署与应用设计。
+4. 最后亲手跑通一个视觉语言模型，并做一个简单的图像问答 Demo。
+
+为了让“读懂”真正走向“会做”，本项目现在在章节设计上尽量保持统一节奏：
+
+- 概念主线
+- 工程视角
+- 实战衔接
+- 章末练习
+
+## ✨ 你将收获什么
+
+- 系统理解多模态大模型的核心概念、能力边界与主流技术路线
+- 理解视觉编码器、CLIP、Projector、Connector、Instruction Tuning 的工程角色
+- 学会阅读常见 VLM/MLLM 架构图，并知道它们为什么这样设计
+- 了解数据构建、SFT、LoRA、评测基准、部署选型等关键工程问题
+- 能够基于 `Transformers` 或 OpenAI 兼容接口跑通图文问答
+- 能够进一步把单模态 Agent 扩展成多模态 Agent
+- 能够从教程内容过渡到自己的评测脚本、Demo 和小型开源项目
+
+## 📖 内容导航
+
+| 章节 | 关键内容 | 状态 |
+| --- | --- | --- |
+| [前言](./docs/前言.md) | 项目定位、学习方式与预备知识 | ✅ |
+| [第一章 多模态大模型概览](./docs/chapter1/第一章%20多模态大模型概览.md) | 模态定义、任务版图、典型能力与误区 | ✅ |
+| [第二章 视觉编码器与跨模态对齐](./docs/chapter2/第二章%20视觉编码器与跨模态对齐.md) | ViT、CLIP、Patch Token、对齐训练 | ✅ |
+| [第三章 多模态生成架构](./docs/chapter3/第三章%20多模态生成架构.md) | BLIP-2、LLaVA、统一序列建模 | ✅ |
+| [第四章 数据、训练与微调](./docs/chapter4/第四章%20数据、训练与微调.md) | 数据配方、训练流程、LoRA/QLoRA | ✅ |
+| [第五章 评测体系与工程选型](./docs/chapter5/第五章%20评测体系与工程选型.md) | 感知、OCR、推理、幻觉与评测脚本模板 | ✅ |
+| [第六章 推理部署与 Serving](./docs/chapter6/第六章%20推理部署与%20Serving.md) | 单机推理、服务化、资源规划与观测 | ✅ |
+| [第七章 动手跑通你的第一个 VLM](./docs/chapter7/第七章%20动手跑通你的第一个%20VLM.md) | `Transformers` 推理脚本、OpenAI 兼容客户端与实验任务 | ✅ |
+| [第八章 构建一个图像问答 Demo](./docs/chapter8/第八章%20构建一个图像问答%20Demo.md) | 使用 `Gradio` 快速搭建图文问答界面并扩展任务模式 | ✅ |
+| [第九章 从单模态 Agent 到多模态 Agent](./docs/chapter9/第九章%20从单模态%20Agent%20到多模态%20Agent.md) | 多模态感知、工具调用、Agent 骨架与工作流设计 | ✅ |
+| [第十章 学习路线与开源项目实战建议](./docs/chapter10/第十章%20学习路线与开源项目实战建议.md) | 进阶路线、扩展方向与开源协作建议 | ✅ |
+
+### Extra-Chapter
+
+| 扩展专题 | 关键内容 | 状态 |
+| --- | --- | --- |
+| [Extra01 OCR 与文档理解专题](./Extra-Chapter/Extra01-OCR与文档理解专题.md) | OCR、版面理解、字段抽取与组合工作流 | ✅ |
+| [Extra02 多图输入与比较专题](./Extra-Chapter/Extra02-多图输入与比较专题.md) | 多图编号、比较提示词、跨图归纳与多图工作流 | ✅ |
+| [Extra03 长图处理与切块策略专题](./Extra-Chapter/Extra03-长图处理与切块策略专题.md) | 长图缩放风险、切块策略、层级化分析与 Agent 衔接 | ✅ |
+
+## 🧭 快速跳转
+
+- 开始阅读：[前言](./docs/前言.md)
+- 从理论入门：[第一章 多模态大模型概览](./docs/chapter1/第一章%20多模态大模型概览.md)
+- 直接动手：[第七章 动手跑通你的第一个 VLM](./docs/chapter7/第七章%20动手跑通你的第一个%20VLM.md)
+- 做 Demo：[第八章 构建一个图像问答 Demo](./docs/chapter8/第八章%20构建一个图像问答%20Demo.md)
+- 看扩展专题：[扩展阅读](./docs/扩展阅读.md)
+- 看配图建议：[配图规划](./docs/配图规划.md)
+
+## 🖼️ 配图占位建议
+
+- `README` 封面横幅
+  建议文件名：`docs/images/readme-cover-start-mllm.png`
+  画面描述：一张教程项目封面图，左侧是“文本、图片、文档、视频帧”四类输入卡片，右侧是“编码器、对齐层、LLM、Demo、Agent”流程图，整体风格简洁、技术感强、偏中文教程封面。
+- 学习路线总览图
+  建议文件名：`docs/images/readme-learning-roadmap.png`
+  画面描述：把“概念 -> 架构 -> 数据训练 -> 评测部署 -> 推理实践 -> Demo -> Agent -> 扩展专题”串成一条学习路线图，适合放在 README 中部作为项目路线概览。
+
+## 📂 项目结构
+
+```text
+Start-MLLM
+├─ README.md
+├─ LICENSE
+├─ .gitignore
+├─ Extra-Chapter
+│  ├─ README.md
+│  ├─ Extra01-OCR与文档理解专题.md
+│  ├─ Extra02-多图输入与比较专题.md
+│  └─ Extra03-长图处理与切块策略专题.md
+└─ docs
+   ├─ README.md
+   ├─ 前言.md
+   ├─ _sidebar.md
+   ├─ index.html
+   ├─ chapter1 ~ chapter10
+   ├─ chapter4/code
+   │  ├─ prepare_dataset_manifest.py
+   │  └─ sample_multimodal_sft.jsonl
+   ├─ chapter5/code
+   │  ├─ eval_vlm_dataset.py
+   │  ├─ requirements.txt
+   │  └─ sample_eval_dataset.jsonl
+   ├─ chapter7/code
+   │  ├─ requirements.txt
+   │  ├─ transformers_chat.py
+   │  └─ openai_compatible_client.py
+   ├─ chapter8/code
+   │  ├─ requirements.txt
+   │  ├─ .env.example
+   │  └─ app.py
+   └─ chapter9/app
+      ├─ .env.example
+      ├─ requirements.txt
+      └─ agent_workflow_demo.py
+```
+
+## 💡 如何学习
+
+如果你是第一次系统学习多模态大模型，建议按下面顺序推进：
+
+1. 先读前言、第一章、第二章，建立“模态、编码器、对齐”的基本框架。
+2. 再读第三章、第四章，理解生成式多模态模型为什么能“看图说话”。
+3. 接着阅读第五章、第六章，形成工程选型和部署视角。
+4. 最后直接动手实践第七章和第八章，把知识变成可运行的项目。
+5. 学完每章后优先完成“章末练习”里的 1 到 2 题，再继续下一章。
+
+如果你已经有 LLM 基础，可以直接从第三章开始，然后穿插阅读代码示例。
+
+如果你已经进入具体场景开发，建议把 `Extra-Chapter` 和正文穿插阅读：
+
+- 做截图、票据、合同：优先读 `Extra01`
+- 做版本对比、商品多图：优先读 `Extra02`
+- 做长网页、长截图、长文档：优先读 `Extra03`
+
+## 🤝 如何贡献
+
+欢迎任何形式的贡献：
+
+- 提交 Issue，指出内容错误、表达不清或代码问题
+- 提交 Pull Request，补充模型、部署、评测、Agent 案例
+- 新增章节，例如音频、多图推理、视频理解、文档智能等
+- 补充配图、实验记录、Notebook 或 benchmark 脚本
+
+## 📜 开源协议
+
+本项目默认采用 `CC BY-NC-SA 4.0` 协议发布，适合教程、笔记、文档型仓库继续共创。
