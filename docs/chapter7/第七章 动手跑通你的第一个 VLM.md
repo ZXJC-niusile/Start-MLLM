@@ -1,6 +1,8 @@
 # 第七章 动手跑通你的第一个 VLM
 
-这一章开始进入实践。目标很明确：你至少要跑通一条最小多模态链路，并真正看懂输入输出长什么样。
+从这一章开始就不只是“看懂”，而是要亲手跑起来。目标很简单：打通一条最小多模态链路，并看清输入输出到底长什么样。
+
+**前置**： [第六章](../chapter6/第六章%20推理部署与%20Serving.md) 的链路与日志字段；若本地显存吃紧或细节全丢，回到 [第二章](../chapter2/第二章%20视觉编码器与跨模态对齐.md) 看分辨率与 patch。跑通后建议用 [第五章](../chapter5/第五章%20评测体系与工程选型.md) 的小集子做几次固定提问，养成记录失败 `id` 的习惯。
 
 本章提供两种方式：
 
@@ -28,7 +30,7 @@ pip install -r docs/chapter7/code/requirements.txt
 你需要准备：
 
 - 一个支持图文对话的视觉语言模型
-- 一张待测试图片
+- 一张待测试图片（仓库未默认附带示例图；可先在 `docs/chapter5/code` 运行 `python create_placeholder_images.py`，再用路径 `docs/chapter5/code/images/sample_ui.png`——以下命令默认你在**仓库根目录**执行）
 
 脚本默认使用环境变量：
 
@@ -40,12 +42,12 @@ pip install -r docs/chapter7/code/requirements.txt
 
 ```bash
 set MODEL_ID=Qwen/Qwen2.5-VL-3B-Instruct
-set IMAGE_PATH=demo.jpg
+set IMAGE_PATH=docs/chapter5/code/images/sample_ui.png
 set QUESTION=请详细描述这张图，并指出其中最重要的视觉元素。
 python docs/chapter7/code/transformers_chat.py
 ```
 
-### 4. 这个脚本在做什么
+### 4. 这个脚本其实在做什么
 
 脚本的关键步骤其实就四步：
 
@@ -54,7 +56,7 @@ python docs/chapter7/code/transformers_chat.py
 3. 让 processor 把消息变成模型输入
 4. 调 `generate` 输出答案
 
-你应该重点关注的不是“命令跑通了”，而是下面三个点：
+建议你别只盯“命令成功”，而是重点看这三个点：
 
 - 图像消息在代码里是如何表示的
 - chat template 是怎么把图文消息拼接成输入的
@@ -69,16 +71,18 @@ python docs/chapter7/code/transformers_chat.py
 
 ### 1. 运行方式
 
+`openai_compatible_client.py` 与 `transformers_chat.py` 共用 `docs/learner_paths.py`：**不设置 `IMAGE_PATH` 时**，若已生成第五章占位图，会自动使用 `docs/chapter5/code/images/sample_ui.png`；也可显式指定任意路径（支持在仓库根目录或章节目录下运行）。
+
 ```bash
 set OPENAI_BASE_URL=http://127.0.0.1:8000/v1
 set OPENAI_API_KEY=EMPTY
 set MODEL_ID=your-vlm
-set IMAGE_PATH=demo.jpg
+set IMAGE_PATH=docs/chapter5/code/images/sample_ui.png
 set QUESTION=这张图传递了什么信息？
 python docs/chapter7/code/openai_compatible_client.py
 ```
 
-### 2. 为什么推荐保留这一层
+### 2. 为什么最好保留这一层
 
 如果你后续要做：
 
@@ -116,7 +120,7 @@ python docs/chapter7/code/openai_compatible_client.py
 - 降低输入图像分辨率
 - 减少 `max_new_tokens`
 
-## 五、建议你主动做的三个小实验
+## 五、建议你顺手做的三个小实验
 
 ### 实验 1：同一张图问不同问题
 
@@ -130,7 +134,7 @@ python docs/chapter7/code/openai_compatible_client.py
 
 例如“这张图里有没有红色汽车”，观察模型是否会幻觉。
 
-## 六、从这一步开始，你应该具备什么能力
+## 六、跑通后你应该具备什么能力
 
 如果你顺利跑通本章代码，你应该已经能：
 
@@ -143,7 +147,7 @@ python docs/chapter7/code/openai_compatible_client.py
 
 如果你已经跑通脚本，建议不要停在“问一张图一个问题”。更好的做法是立刻把脚本变成实验工具。
 
-### 你可以增加的三个方向
+### 可以继续加的三个方向
 
 1. 固定 5 张图片，比较同一 prompt 下的稳定性。
 2. 固定 1 张图片，比较不同 prompt 对结果的影响。
@@ -156,29 +160,35 @@ python docs/chapter7/code/openai_compatible_client.py
 - 对截图、小字、图表是否明显变差
 - 同一问题多次请求是否稳定
 
-这会把“能跑通”升级成“会做实验”。
+做到这里，你就从“会跑命令”进到“会做实验”了。
 
 ## 八、章末练习
 
+**动机**：本章是全书动手枢纽；练完你能独立改 `messages`、对照模板排查协议错误，后面 Demo、评测、Agent 都站在同一条链路上。
+
+### 必做（约 15 分钟）
+
 1. 使用本章脚本，对同一张图设计 3 个不同层次的问题。
 2. 找一张自然图像和一张截图，比较模型回答差异。
-3. 修改脚本，加入 `SYSTEM_PROMPT` 或输出文件保存逻辑。
-4. 解释 `apply_chat_template` 在多模态推理链路里的作用。
 
-## 九、配图占位建议
+### 进阶（约 30 分钟）
 
-- 建议图 1
-  建议文件名：`docs/images/ch7-local-vs-api.png`
-  插入位置：第二节后
-  画面描述：本地 Transformers 推理和 OpenAI 兼容接口调用两条链路的对比示意图。
-- 建议图 2
-  建议文件名：`docs/images/ch7-script-output-sample.png`
-  插入位置：第六节后
-  画面描述：终端运行多模态脚本并输出回答的示意截图，占位即可。
+1. 修改脚本，加入 `SYSTEM_PROMPT` 或输出文件保存逻辑。
+2. 解释 `apply_chat_template` 在多模态推理链路里的作用。
 
-## 十、本章小结
+### 挑战（1 小时左右）
+
+1. 写一个小循环：对固定文件夹下 5 张图调用同一脚本，把 `image_path / question / answer` 追加写入一个 JSONL，作为你个人评测集的雏形。
+
+## 九、可选配图
+
+这一章建议放两张实用图：一张“本地推理 vs API 调用”的流程对比图，一张真实的终端运行截图（建议使用你本机实际输出，不用示意占位图）。
+
+## 十、这一章最关键的收获
 
 本章不是为了让你记住某个模型命令，而是为了把“多模态推理链路”变具体。只要你能读懂这里的代码，后面无论是做 Demo、做 Agent 还是做服务封装，难度都会明显下降。
+
+你在本章摸清的 `messages` 与模板，会直接决定 **第八章** `Gradio` 发出的请求体是否与 **第五章** 评测脚本一致；下面把同一套调用嵌进第六章所说的「应用服务」层。
 
 ## 十一、章节跳转
 

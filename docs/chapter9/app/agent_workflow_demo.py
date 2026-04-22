@@ -2,9 +2,15 @@ import base64
 import json
 import mimetypes
 import os
+import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
+
+_DOCS = Path(__file__).resolve().parents[2]
+if str(_DOCS) not in sys.path:
+    sys.path.insert(0, str(_DOCS))
+from learner_paths import resolve_image_path
 from openai import OpenAI
 
 
@@ -96,7 +102,8 @@ class MultimodalAgent:
 
 
 def main() -> None:
-    image_path = os.getenv("IMAGE_PATH", "demo.jpg")
+    raw_path = os.getenv("IMAGE_PATH", "").strip()
+    image_path = str(resolve_image_path(raw_path or None, script_file=__file__))
     question = os.getenv("QUESTION", "请分析这张图片，并给出下一步建议。")
     try:
         agent = MultimodalAgent()

@@ -22,12 +22,7 @@
 3. 接着学习数据、训练、评测、部署与应用设计。
 4. 最后亲手跑通一个视觉语言模型，并做一个简单的图像问答 Demo。
 
-为了让“读懂”真正走向“会做”，本项目现在在章节设计上尽量保持统一节奏：
-
-- 概念主线
-- 工程视角
-- 实战衔接
-- 章末练习
+为了让“读懂”真正走向“会做”，各章都会保留**概念 + 工程 + 实战/练习**的层次，但每章侧重点不同：有的偏地图，有的偏数据，有的偏脚本。整体主线见 [前言](./docs/前言.md) 中的「正文章节怎么串起来」表格。
 
 ## ✨ 你将收获什么
 
@@ -66,20 +61,17 @@
 ## 🧭 快速跳转
 
 - 开始阅读：[前言](./docs/前言.md)
+- 章节依赖一览：同上，前言中的「正文章节怎么串起来」表格（1～3 → 4 → 5 → 6 → 7～8 → 9～10）
+- Docs 站内导航：[docs/README](./docs/README.md)
 - 从理论入门：[第一章 多模态大模型概览](./docs/chapter1/第一章%20多模态大模型概览.md)
 - 直接动手：[第七章 动手跑通你的第一个 VLM](./docs/chapter7/第七章%20动手跑通你的第一个%20VLM.md)
 - 做 Demo：[第八章 构建一个图像问答 Demo](./docs/chapter8/第八章%20构建一个图像问答%20Demo.md)
 - 看扩展专题：[扩展阅读](./docs/扩展阅读.md)
 - 看配图建议：[配图规划](./docs/配图规划.md)
 
-## 🖼️ 配图占位建议
+## 🖼️ 可选配图
 
-- `README` 封面横幅
-  建议文件名：`docs/images/readme-cover-start-mllm.png`
-  画面描述：一张教程项目封面图，左侧是“文本、图片、文档、视频帧”四类输入卡片，右侧是“编码器、对齐层、LLM、Demo、Agent”流程图，整体风格简洁、技术感强、偏中文教程封面。
-- 学习路线总览图
-  建议文件名：`docs/images/readme-learning-roadmap.png`
-  画面描述：把“概念 -> 架构 -> 数据训练 -> 评测部署 -> 推理实践 -> Demo -> Agent -> 扩展专题”串成一条学习路线图，适合放在 README 中部作为项目路线概览。
+如果你准备把仓库做成公开展示页，建议优先补两张图：一张封面总览图（多模态输入到应用落地的全链路），一张学习路线图（概念 -> 架构 -> 训练 -> 评测部署 -> 实战 -> Agent）。
 
 ## 📂 项目结构
 
@@ -95,14 +87,17 @@ Start-MLLM
 │  └─ Extra03-长图处理与切块策略专题.md
 └─ docs
    ├─ README.md
+   ├─ learner_paths.py
    ├─ 前言.md
    ├─ _sidebar.md
    ├─ index.html
    ├─ chapter1 ~ chapter10
    ├─ chapter4/code
+   │  ├─ create_placeholder_images.py
    │  ├─ prepare_dataset_manifest.py
    │  └─ sample_multimodal_sft.jsonl
    ├─ chapter5/code
+   │  ├─ create_placeholder_images.py
    │  ├─ eval_vlm_dataset.py
    │  ├─ requirements.txt
    │  └─ sample_eval_dataset.jsonl

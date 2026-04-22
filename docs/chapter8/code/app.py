@@ -11,6 +11,8 @@ from openai import OpenAI
 
 load_dotenv()
 
+_DEFAULT_BASE = os.getenv("OPENAI_BASE_URL", "http://127.0.0.1:8000/v1")
+_DEFAULT_MODEL = os.getenv("MODEL_ID", "your-vlm")
 
 TASK_PROMPTS = {
     "自由问答": "{question}",
@@ -43,10 +45,10 @@ def ask_vlm(image_path: str, question: str, task_mode: str) -> tuple[str, str]:
     start = time.perf_counter()
     try:
         client = OpenAI(
-            base_url=os.getenv("OPENAI_BASE_URL", "http://127.0.0.1:8000/v1"),
+            base_url=_DEFAULT_BASE,
             api_key=os.getenv("OPENAI_API_KEY", "EMPTY"),
         )
-        model_id = os.getenv("MODEL_ID", "your-vlm")
+        model_id = _DEFAULT_MODEL
         data_url = to_data_url(image_path)
         prompt = build_prompt(task_mode, question)
 
@@ -72,6 +74,10 @@ def ask_vlm(image_path: str, question: str, task_mode: str) -> tuple[str, str]:
 
 with gr.Blocks(title="Start-MLLM Demo") as demo:
     gr.Markdown("# Start-MLLM 图像问答 Demo")
+    gr.Markdown(
+        f"**当前后端**：`{_DEFAULT_BASE}` · **MODEL_ID**：`{_DEFAULT_MODEL}`  "
+        "（复制 `.env.example` 为 `.env` 或改环境变量后重启本页）"
+    )
     gr.Markdown("上传图片，输入问题，通过 OpenAI 兼容接口调用你的多模态模型。")
     gr.Markdown("支持自由问答、截图报错分析、关键信息提取、商品图卖点总结四种基础模式。")
     gr.Markdown("示例问题：请描述图片主要内容 / 请解释截图错误 / 请提取关键信息 / 请总结 3 条卖点")
@@ -102,6 +108,7 @@ with gr.Blocks(title="Start-MLLM Demo") as demo:
 
 
 if __name__ == "__main__":
+    print(f"[Start-MLLM Demo] OPENAI_BASE_URL={_DEFAULT_BASE} MODEL_ID={_DEFAULT_MODEL}")
     demo.launch(
         server_name=os.getenv("GRADIO_SERVER_NAME", "127.0.0.1"),
         server_port=int(os.getenv("GRADIO_SERVER_PORT", "7860")),

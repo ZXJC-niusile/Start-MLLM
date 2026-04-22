@@ -14,3 +14,8 @@ dist/
 build/
 .env
 
+# 学习者本地生成的占位图与评测输出（仓库提供脚本，不提交二进制）
+docs/chapter4/code/images/*.png
+docs/chapter5/code/images/*.png
+docs/chapter5/code/eval_results.jsonl
+
