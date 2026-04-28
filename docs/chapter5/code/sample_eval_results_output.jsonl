@@ -1,0 +1,3 @@
+{"id":"eval-001","question":"这张截图的主要功能区域是什么？","reference":"界面","tags":["ui","description"],"prediction":"界面左侧是导航栏，右侧是任务列表区域。","status":"ok","elapsed_seconds":1.15}
+{"id":"eval-002","question":"截图中最关键的报错信息是什么？","reference":"数据库","tags":["screenshot","error"],"prediction":"连接超时，请检查网络。","status":"ok","elapsed_seconds":0.92}
+{"id":"eval-003","question":"图表整体趋势是上升、下降还是波动？","reference":"上升","tags":["chart","reasoning"],"prediction":"","status":"error","error":"(示例) 请求失败占位"}

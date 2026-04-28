@@ -1,5 +1,7 @@
 # 第八章 构建一个图像问答 Demo
 
+> **实战篇**（第 5～10 章）：评测、部署、推理与 Demo、Agent、学习路线收束。
+
 这一章把上一章的“命令行推理”升级成“可交互 Demo”。很多项目真正的起点都在这里：先把能力做成一个稳定、可演示、可反复验证的界面。
 
 **衔接**：请求体字段尽量与 [第五章](../chapter5/第五章%20评测体系与工程选型.md) 的 `eval_vlm_dataset.py` 习惯一致（同模型、同 `messages` 结构），这样 Demo 里复现的 bug 能直接回到评测集对照。复杂 OCR / 长图可在 Demo 稳定后翻 [扩展阅读](../扩展阅读.md)。
@@ -14,6 +16,8 @@
 4. 这个能力是否真的值得继续做成产品
 
 如果连一个小 Demo 都经常答错、答慢、答偏，那直接上复杂系统通常只会把问题放大。
+
+**内容提示**：Demo 是**实战篇**里承上启下的一环——对上承接第五章「同一批 JSONL 能否在界面里复现」，对下给第六章「真实链路里的上传、超时、重试」一个最小试验场。别把它只当成 UI 练习。
 
 ## 二、本章代码说明
 
@@ -39,7 +43,7 @@ pip install -r docs/chapter8/code/requirements.txt
 
 ## 四、配置环境变量
 
-配置可以参考 `.env.example`：
+配置可以参考 `.env.example`（`KEY=value` 行格式各系统相同）。若你**不用 `.env`**、而在终端里临时注入变量：Windows 用 `set KEY=value`，Linux / macOS 用 `export KEY=value`，详见 [前言](../前言.md)。
 
 ```bash
 OPENAI_BASE_URL=http://127.0.0.1:8000/v1
@@ -180,6 +184,8 @@ python docs/chapter8/code/app.py
 - 金额
 - 关键结论
 
+> 更完整的票据/文档抽取工作流设计（含 OCR 接入、版面分析、规则校验），见 [Extra01 OCR 与文档理解专题](../../Extra-Chapter/Extra01-OCR与文档理解专题.md)。
+
 ### 3. 商品图卖点生成
 
 让模型先识别商品元素，再按电商文案格式生成卖点。
@@ -217,4 +223,5 @@ Demo 章节建议配一张真实界面截图，再补一张任务模式说明图
 
 - 上一篇：[第七章 动手跑通你的第一个 VLM](../chapter7/第七章%20动手跑通你的第一个%20VLM.md)
 - 下一篇：[第九章 从单模态 Agent 到多模态 Agent](../chapter9/第九章%20从单模态%20Agent%20到多模态%20Agent.md)
-- 对应扩展：[Extra01 OCR 与文档理解专题](../../Extra-Chapter/Extra01-OCR与文档理解专题.md)
+- 配套代码：[code 目录](./code)（仓库路径 `docs/chapter8/code`）
+- 延伸专题：[Extra01 OCR 与文档理解专题](../../Extra-Chapter/Extra01-OCR与文档理解专题.md)

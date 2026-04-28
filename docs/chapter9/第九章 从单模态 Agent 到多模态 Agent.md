@@ -1,5 +1,7 @@
 # 第九章 从单模态 Agent 到多模态 Agent
 
+> **实战篇**（第 5～10 章）：评测、部署、推理与 Demo、Agent、学习路线收束。
+
 承接 [第八章](../chapter8/第八章%20构建一个图像问答%20Demo.md)：Demo 多为「单轮图文问答」；本章在同一套多模态调用之上加**规划、工具与记忆**，并强调感知不可靠时的降级——这类失败模式在 [第五章](../chapter5/第五章%20评测体系与工程选型.md) 里应已有记录。
 
 ## 一、为什么多模态会直接改变 Agent 的边界
@@ -13,6 +15,8 @@
 - 从“纯文本推理”升级为“基于视觉证据的决策”
 
 所以多模态不是“锦上添花”，而是很多真实任务里必须补上的那块能力。
+
+**落地顺序建议**（仍属实战篇，但比 Demo 多几层）：1）先做到 [第八章](../chapter8/第八章%20构建一个图像问答%20Demo.md) 级单轮图文稳定；2）为图像增加「感知摘要」一步，避免规划直接啃原图；3）再引入工具分支与简单规则；4）把感知失败时的降级写清，并与 [第五章](../chapter5/第五章%20评测体系与工程选型.md) 记录的失败 `id` 对齐。跳步常见后果是「Agent 框架很漂亮，一上真实截图就不可观测」。
 
 ## 二、单模态 Agent 和多模态 Agent 的结构差异
 
@@ -76,7 +80,9 @@ flowchart LR
 3. 判断是否需要调用文档检索或本地知识库。
 4. 生成面向用户的解释和下一步操作建议。
 
-这个流程里，多模态模型负责“感知”，而 Agent 负责“组织与行动”。
+这个流程里，多模态模型负责”感知”，而 Agent 负责”组织与行动”。
+
+> 如果截图是长图（如包含顶部导航 + 中间报错 + 底部日志），直接整图处理容易漏细节。此时需要结合切块策略，详见 [Extra03 长图处理与切块策略专题](../../Extra-Chapter/Extra03-长图处理与切块策略专题.md)。
 
 ## 五、什么时候别把所有事都压给一个 VLM
 
@@ -173,6 +179,36 @@ set QUESTION=请分析这张截图并给出下一步建议。
 python docs/chapter9/app/agent_workflow_demo.py
 ```
 
+### 关于工具路由的说明（重要）
+
+`agent_workflow_demo.py` 使用**关键字匹配**（`if "报错" in summary`）做工具路由，这是教学简化写法，优点是代码少、好理解；缺点是扩展性差、容易误判。
+
+如果你要做生产环境或继续扩展，建议改用 **`agent_workflow_v2.py`**：
+
+- 使用 OpenAI 标准的 **tool-calling JSON schema** 定义工具
+- 让模型自己决定是否调用工具、调用哪个工具、传什么参数
+- 天然支持多工具组合、参数校验、错误回退
+
+运行方式相同，只是换文件名：
+
+```bash
+python docs/chapter9/app/agent_workflow_v2.py
+```
+
+**学习建议**：先跑通 v1 理解「感知 → 路由 → 工具 → 汇总」的链路，再读 v2 的代码理解 schema 写法。两者并存，方便对照。
+
+Linux / macOS：把上述 `set` 换成对应的 `export` 即可，例如：
+
+```bash
+pip install -r docs/chapter9/app/requirements.txt
+export OPENAI_BASE_URL=http://127.0.0.1:8000/v1
+export OPENAI_API_KEY=EMPTY
+export MODEL_ID=your-vlm
+export IMAGE_PATH=docs/chapter5/code/images/sample_ui.png
+export QUESTION=请分析这张截图并给出下一步建议。
+python docs/chapter9/app/agent_workflow_demo.py
+```
+
 （未设置 `IMAGE_PATH` 时，同样会按 `docs/learner_paths.py` 规则尝试第五章占位图；需先在 `docs/chapter5/code` 运行 `create_placeholder_images.py`。）
 
 它不是一个完整框架，但很适合拿来继续改造成：
@@ -209,10 +245,11 @@ python docs/chapter9/app/agent_workflow_demo.py
 - 真正稳定的多模态 Agent 通常是“VLM + 工具 + 规划”的组合，而不是单模型包打天下。
 - 做系统时，一定要区分感知、规划、执行、记忆四个环节。
 
-**第十章**把这些收成可执行的迭代主线：第四章数据、第五章评测、第六章部署与本章工作流，下面收成一条你能照着跑 30 天的路线，避免学完就散。
+**第十章**把这些收成可执行的迭代主线：[第四章](../chapter4/第四章%20数据、训练与微调.md) 数据、[第五章](../chapter5/第五章%20评测体系与工程选型.md) 评测、[第六章](../chapter6/第六章%20推理部署与%20Serving.md) 部署与本章工作流，下面收成一条你能照着跑 30 天的路线，避免学完就散。
 
 ## 十三、章节跳转
 
 - 上一篇：[第八章 构建一个图像问答 Demo](../chapter8/第八章%20构建一个图像问答%20Demo.md)
 - 下一篇：[第十章 学习路线与开源项目实战建议](../chapter10/第十章%20学习路线与开源项目实战建议.md)
-- 对应扩展：[Extra01 OCR 与文档理解专题](../../Extra-Chapter/Extra01-OCR与文档理解专题.md)
+- 配套代码：[app 目录](./app)（仓库路径 `docs/chapter9/app`）
+- 延伸专题：[Extra01 OCR 与文档理解专题](../../Extra-Chapter/Extra01-OCR与文档理解专题.md)

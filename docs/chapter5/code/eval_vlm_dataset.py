@@ -56,6 +56,11 @@ def parse_args() -> argparse.Namespace:
     env = os.environ
     parser = argparse.ArgumentParser(
         description="对 JSONL 评测集批量调用 OpenAI 兼容多模态接口，写出 eval_results.jsonl。",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=(
+            "跑通后可用同目录 summarize_eval_results.py 汇总结果；"
+            "未接 API 时可先用 sample_eval_results_output.jsonl 试汇总脚本。"
+        ),
     )
     parser.add_argument(
         "--dataset",

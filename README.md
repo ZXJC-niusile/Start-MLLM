@@ -33,22 +33,32 @@
 - 能够基于 `Transformers` 或 OpenAI 兼容接口跑通图文问答
 - 能够进一步把单模态 Agent 扩展成多模态 Agent
 - 能够从教程内容过渡到自己的评测脚本、Demo 和小型开源项目
+- 若以**论文或严谨实验**为目标：正文侧重系统理解与工程闭环；还需自行补全基线、对照、消融与复现（见 [第十章第十一节](./docs/chapter10/第十章%20学习路线与开源项目实战建议.md)）
 
 ## 📖 内容导航
 
+正文按 **理论篇（第 1～4 章）** 与 **实战篇（第 5～10 章）** 分层，细节见 [前言「理论篇与实战篇」](./docs/前言.md)。
+
+### 理论篇
+
 | 章节 | 关键内容 | 状态 |
 | --- | --- | --- |
-| [前言](./docs/前言.md) | 项目定位、学习方式与预备知识 | ✅ |
-| [第一章 多模态大模型概览](./docs/chapter1/第一章%20多模态大模型概览.md) | 模态定义、任务版图、典型能力与误区 | ✅ |
-| [第二章 视觉编码器与跨模态对齐](./docs/chapter2/第二章%20视觉编码器与跨模态对齐.md) | ViT、CLIP、Patch Token、对齐训练 | ✅ |
-| [第三章 多模态生成架构](./docs/chapter3/第三章%20多模态生成架构.md) | BLIP-2、LLaVA、统一序列建模 | ✅ |
-| [第四章 数据、训练与微调](./docs/chapter4/第四章%20数据、训练与微调.md) | 数据配方、训练流程、LoRA/QLoRA | ✅ |
-| [第五章 评测体系与工程选型](./docs/chapter5/第五章%20评测体系与工程选型.md) | 感知、OCR、推理、幻觉与评测脚本模板 | ✅ |
-| [第六章 推理部署与 Serving](./docs/chapter6/第六章%20推理部署与%20Serving.md) | 单机推理、服务化、资源规划与观测 | ✅ |
-| [第七章 动手跑通你的第一个 VLM](./docs/chapter7/第七章%20动手跑通你的第一个%20VLM.md) | `Transformers` 推理脚本、OpenAI 兼容客户端与实验任务 | ✅ |
-| [第八章 构建一个图像问答 Demo](./docs/chapter8/第八章%20构建一个图像问答%20Demo.md) | 使用 `Gradio` 快速搭建图文问答界面并扩展任务模式 | ✅ |
-| [第九章 从单模态 Agent 到多模态 Agent](./docs/chapter9/第九章%20从单模态%20Agent%20到多模态%20Agent.md) | 多模态感知、工具调用、Agent 骨架与工作流设计 | ✅ |
-| [第十章 学习路线与开源项目实战建议](./docs/chapter10/第十章%20学习路线与开源项目实战建议.md) | 进阶路线、扩展方向与开源协作建议 | ✅ |
+| [前言](./docs/前言.md) | 分册说明、依赖表、能力清单 | ✅ |
+| [第一章](./docs/chapter1/第一章%20多模态大模型概览.md) | 模态定义、任务版图、典型能力与误区 | ✅ |
+| [第二章](./docs/chapter2/第二章%20视觉编码器与跨模态对齐.md) | ViT、CLIP、Patch Token、对齐训练 | ✅ |
+| [第三章](./docs/chapter3/第三章%20多模态生成架构.md) | BLIP-2、LLaVA、统一序列建模 | ✅ |
+| [第四章](./docs/chapter4/第四章%20数据、训练与微调.md) | 数据配方、训练流程、LoRA/QLoRA | ✅ |
+
+### 实战篇
+
+| 章节 | 关键内容 | 状态 |
+| --- | --- | --- |
+| [第五章](./docs/chapter5/第五章%20评测体系与工程选型.md) | 感知、OCR、推理、幻觉与评测脚本模板 | ✅ |
+| [第六章](./docs/chapter6/第六章%20推理部署与%20Serving.md) | 单机推理、服务化、资源规划与观测 | ✅ |
+| [第七章](./docs/chapter7/第七章%20动手跑通你的第一个%20VLM.md) | `Transformers` 推理脚本、OpenAI 兼容客户端与实验任务 | ✅ |
+| [第八章](./docs/chapter8/第八章%20构建一个图像问答%20Demo.md) | `Gradio` 图文问答界面与任务模式 | ✅ |
+| [第九章](./docs/chapter9/第九章%20从单模态%20Agent%20到多模态%20Agent.md) | 多模态感知、工具调用、Agent 骨架与工作流 | ✅ |
+| [第十章](./docs/chapter10/第十章%20学习路线与开源项目实战建议.md) | 进阶路线、扩展方向与开源协作建议 | ✅ |
 
 ### Extra-Chapter
 
@@ -61,17 +71,18 @@
 ## 🧭 快速跳转
 
 - 开始阅读：[前言](./docs/前言.md)
-- 章节依赖一览：同上，前言中的「正文章节怎么串起来」表格（1～3 → 4 → 5 → 6 → 7～8 → 9～10）
-- Docs 站内导航：[docs/README](./docs/README.md)
-- 从理论入门：[第一章 多模态大模型概览](./docs/chapter1/第一章%20多模态大模型概览.md)
-- 直接动手：[第七章 动手跑通你的第一个 VLM](./docs/chapter7/第七章%20动手跑通你的第一个%20VLM.md)
+- 理论篇 / 实战篇说明：[前言](./docs/前言.md)「理论篇与实战篇」；工程先后另见「正文章节怎么串起来」表
+- Docs 站内导航：[docs/README](./docs/README.md)（按篇分列）
+- 理论篇入口：[第一章](./docs/chapter1/第一章%20多模态大模型概览.md)
+- 实战篇入口：[第五章](./docs/chapter5/第五章%20评测体系与工程选型.md) · [第七章](./docs/chapter7/第七章%20动手跑通你的第一个%20VLM.md)
 - 做 Demo：[第八章 构建一个图像问答 Demo](./docs/chapter8/第八章%20构建一个图像问答%20Demo.md)
 - 看扩展专题：[扩展阅读](./docs/扩展阅读.md)
+- 研究向（微调衔接、评测汇总）：[研究向补充](./docs/研究向补充-微调与实验记录.md)
 - 看配图建议：[配图规划](./docs/配图规划.md)
 
 ## 🖼️ 可选配图
 
-如果你准备把仓库做成公开展示页，建议优先补两张图：一张封面总览图（多模态输入到应用落地的全链路），一张学习路线图（概念 -> 架构 -> 训练 -> 评测部署 -> 实战 -> Agent）。
+如果你准备把仓库做成公开展示页，建议优先补两张图：一张封面总览图（多模态输入到应用落地的全链路），一张学习路线图（概念 → 架构 → 训练 → 评测部署 → 实战 → Agent）。
 
 ## 📂 项目结构
 
@@ -87,45 +98,54 @@ Start-MLLM
 │  └─ Extra03-长图处理与切块策略专题.md
 └─ docs
    ├─ README.md
-   ├─ learner_paths.py
+   ├─ learner_paths.py（第七、九章脚本共用：解析 `IMAGE_PATH`）
+   ├─ chapter0-环境准备.md          ← 新增：零门槛环境指南
    ├─ 前言.md
+   ├─ 术语表.md                     ← 新增：25+ 术语速查
    ├─ _sidebar.md
    ├─ index.html
    ├─ chapter1 ~ chapter10
+   ├─ chapter2/code
+   │  └─ clip_similarity_demo.py    ← 新增：CLIP 最小代码示例
    ├─ chapter4/code
    │  ├─ create_placeholder_images.py
    │  ├─ prepare_dataset_manifest.py
-   │  └─ sample_multimodal_sft.jsonl
+   │  ├─ sample_multimodal_sft.jsonl
+   │  └─ lora_finetune_minimal.py   ← 新增：最小可跑 LoRA 微调
    ├─ chapter5/code
    │  ├─ create_placeholder_images.py
    │  ├─ eval_vlm_dataset.py
+   │  ├─ summarize_eval_results.py
+   │  ├─ sample_eval_results_output.jsonl
    │  ├─ requirements.txt
    │  └─ sample_eval_dataset.jsonl
    ├─ chapter7/code
    │  ├─ requirements.txt
+   │  ├─ requirements-api.txt       ← 新增：API 方案（无 GPU）
    │  ├─ transformers_chat.py
    │  └─ openai_compatible_client.py
    ├─ chapter8/code
    │  ├─ requirements.txt
    │  ├─ .env.example
    │  └─ app.py
-   └─ chapter9/app
-      ├─ .env.example
-      ├─ requirements.txt
-      └─ agent_workflow_demo.py
+   ├─ chapter9/app
+   │  ├─ .env.example
+   │  ├─ requirements.txt
+   │  ├─ agent_workflow_demo.py
+   │  └─ agent_workflow_v2.py       ← 新增：Tool-Calling Schema 版本
+   └─ 论文路径附录.md                ← 新增：从教程到论文的完整指南
 ```
 
 ## 💡 如何学习
 
 如果你是第一次系统学习多模态大模型，建议按下面顺序推进：
 
-1. 先读前言、第一章、第二章，建立“模态、编码器、对齐”的基本框架。
-2. 再读第三章、第四章，理解生成式多模态模型为什么能“看图说话”。
-3. 接着阅读第五章、第六章，形成工程选型和部署视角。
-4. 最后直接动手实践第七章和第八章，把知识变成可运行的项目。
-5. 学完每章后优先完成“章末练习”里的 1 到 2 题，再继续下一章。
+1. **理论篇**：读前言、第一～四章，建立“模态、编码器、对齐、数据配方”框架。
+2. **实战篇**：读第五～六章（评测与部署），再读第七～八章（跑通与 Demo）。
+3. 需要工作流与路线时读第九～十章。实战篇里第七～八章建议尽早跑通；也可从第 7 章提前切入，再回补理论篇。
+4. 每章优先完成「章末练习」中 1～2 题，再进入下一章。
 
-如果你已经有 LLM 基础，可以直接从第三章开始，然后穿插阅读代码示例。
+如果你已经有 LLM 基础，可理论篇第一章速读后从第二、三章深入，并穿插实战篇代码示例。
 
 如果你已经进入具体场景开发，建议把 `Extra-Chapter` 和正文穿插阅读：
 
