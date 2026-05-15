@@ -38,6 +38,10 @@ flowchart LR
 - 感知错误如何被发现
 - 多模态上下文怎样存入记忆
 
+<div align="center">
+  <img src="../images/ch9-agent-workflow.svg" width="820" alt="多模态 Agent 工作流图">
+</div>
+
 ## 三、多模态 Agent 的四个关键模块
 
 ### 1. 感知模块

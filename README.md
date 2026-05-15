@@ -7,6 +7,10 @@
 > [!CAUTION]
 > ⚠️ Alpha内测版本警告：此为早期构建版本，内容仍在持续补全与调整中，部分章节、示例或表述可能继续变化，欢迎通过 Issue 反馈问题或建议。
 
+<div align="center">
+  <img src="./docs/images/readme-learning-roadmap.svg" width="860" alt="Start-MLLM 学习路线总览">
+</div>
+
 ## 项目介绍
 
 `Start-MLLM` 是一个面向中文学习者的多模态大模型教程项目，定位为“能读懂、能跑通、能继续扩展”的开源学习仓库。
