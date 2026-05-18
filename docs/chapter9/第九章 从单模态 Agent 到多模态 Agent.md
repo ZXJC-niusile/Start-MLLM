@@ -86,7 +86,7 @@ flowchart LR
 
 这个流程里，多模态模型负责”感知”，而 Agent 负责”组织与行动”。
 
-> 如果截图是长图（如包含顶部导航 + 中间报错 + 底部日志），直接整图处理容易漏细节。此时需要结合切块策略，详见 [Extra03 长图处理与切块策略专题](../../Extra-Chapter/Extra03-长图处理与切块策略专题.md)。
+> 如果截图是长图（如包含顶部导航 + 中间报错 + 底部日志），直接整图处理容易漏细节。此时需要结合切块策略，详见 [Extra03 长图处理与切块策略专题](../Extra-Chapter/Extra03-长图处理与切块策略专题.md)。
 
 ## 五、什么时候别把所有事都压给一个 VLM
 
@@ -256,4 +256,4 @@ python docs/chapter9/app/agent_workflow_demo.py
 - 上一篇：[第八章 构建一个图像问答 Demo](../chapter8/第八章%20构建一个图像问答%20Demo.md)
 - 下一篇：[第十章 学习路线与开源项目实战建议](../chapter10/第十章%20学习路线与开源项目实战建议.md)
 - 配套代码：[app 目录](./app)（仓库路径 `docs/chapter9/app`）
-- 延伸专题：[Extra01 OCR 与文档理解专题](../../Extra-Chapter/Extra01-OCR与文档理解专题.md)
+- 延伸专题：[Extra01 OCR 与文档理解专题](../Extra-Chapter/Extra01-OCR与文档理解专题.md)

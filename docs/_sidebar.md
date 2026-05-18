@@ -20,4 +20,4 @@
 - <strong>扩展与专题</strong>
   - [扩展阅读](./扩展阅读.md)
   - [配图规划](./配图规划.md)
-  - [Extra-Chapter 总览](../Extra-Chapter/README.md)
+  - [Extra-Chapter 总览](./Extra-Chapter/README.md)

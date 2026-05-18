@@ -32,7 +32,7 @@
 
 - [扩展阅读](./扩展阅读.md)（Extra 与正文穿插顺序）
 - [配图规划](./配图规划.md)
-- 仓库根目录 [Extra-Chapter](../Extra-Chapter/README.md)
+- [Extra-Chapter 总览](./Extra-Chapter/README.md)
 
 ## 阅读建议（与分册交叉）
 

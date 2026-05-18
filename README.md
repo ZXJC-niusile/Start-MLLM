@@ -89,9 +89,9 @@
 
 | 章节名 | 简介 | 状态 |
 | ---- | ---- | ---- |
-| [Extra01 OCR 与文档理解专题](./Extra-Chapter/Extra01-OCR与文档理解专题.md) | 面向票据、合同、截图、版面理解等场景 | ✅ |
-| [Extra02 多图输入与比较专题](./Extra-Chapter/Extra02-多图输入与比较专题.md) | 面向商品多图、版本比较、跨图归纳等任务 | ✅ |
-| [Extra03 长图处理与切块策略专题](./Extra-Chapter/Extra03-长图处理与切块策略专题.md) | 面向长截图、长网页、长文档输入策略 | ✅ |
+| [Extra01 OCR 与文档理解专题](./docs/Extra-Chapter/Extra01-OCR与文档理解专题.md) | 面向票据、合同、截图、版面理解等场景 | ✅ |
+| [Extra02 多图输入与比较专题](./docs/Extra-Chapter/Extra02-多图输入与比较专题.md) | 面向商品多图、版本比较、跨图归纳等任务 | ✅ |
+| [Extra03 长图处理与切块策略专题](./docs/Extra-Chapter/Extra03-长图处理与切块策略专题.md) | 面向长截图、长网页、长文档输入策略 | ✅ |
 
 ## 贡献者名单
 
