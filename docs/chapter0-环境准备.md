@@ -18,11 +18,20 @@
 
 如果暂时不熟悉，先按「概念优先、代码其次」读，后面逐步补齐。
 
-## 二、Python 环境安装（最小路径）
+## 二、获取教程代码
+
+```bash
+git clone https://github.com/datawhalechina/start-mllm.git
+cd start-mllm
+```
+
+后续章节中的脚本路径均以仓库根目录为基准。
+
+## 三、Python 环境安装（最小路径）
 
 ### 1. 安装 Miniconda
 
-访问 https://docs.conda.io/en/latest/miniconda.html 下载对应系统的安装包，按向导安装即可。
+访问 https://www.anaconda.com/docs/getting-started/miniconda/main 下载对应系统的安装包，按向导安装即可。
 
 ### 2. 创建隔离环境
 
@@ -37,7 +46,7 @@ conda activate start-mllm
 python --version   # 应显示 3.10.x
 ```
 
-## 三、GPU 环境自检（本地推理需要）
+## 四、GPU 环境自检（本地推理需要）
 
 如果你有一块 NVIDIA 显卡，且希望本地跑模型，按下面检查：
 
@@ -49,7 +58,7 @@ python -c "import torch; print(torch.cuda.is_available())"
 python -c "import torch; print(torch.cuda.get_device_name(0)); print(torch.cuda.get_device_properties(0).total_memory / 1024**3, 'GB')"
 ```
 
-输出 `True` 且显存 ≥ 8GB，即可跑第七章的本地推理示例（Qwen2.5-VL-3B 约需 6~8GB）。
+输出 `True` 且显存 ≥ 8GB，即可跑第七章的本地推理示例（Qwen2.5-VL-3B FP16 精度下约需 6~8GB）。
 
 如果输出 `False`，有三种可能：
 1. 没有 NVIDIA 显卡 → 用第七章的 **API 方案**
@@ -62,13 +71,13 @@ python -c "import torch; print(torch.cuda.get_device_name(0)); print(torch.cuda.
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
 
-cu121 表示 CUDA 12.1。如果你的 CUDA 版本不同，到 https://pytorch.org/get-started/locally/ 选择对应版本。
+cu121 表示 CUDA 12.1，仅为示例。实际安装时请到 https://pytorch.org/get-started/locally/ 根据你的 CUDA 版本选择对应的命令。
 
-## 四、没有 GPU 怎么办（API 方案）
+## 五、没有 GPU 怎么办（API 方案）
 
 这是**完全可行的路径**，很多读者全程用 API 学完本教程。
 
-### 免费或低成本 API 选项（2026 年 4 月）
+### 免费或低成本 API 选项（截至本文更新时）
 
 | 平台 | 额度 | 特点 | 适用章节 |
 |---|---|---|---|
@@ -90,12 +99,12 @@ pip install -r docs/chapter7/code/requirements-api.txt   # 不含 torch，仅 50
 ```bash
 OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
-MODEL_ID=qwen2.5-vl-3b-instruct
+MODEL_ID=qwen2.5-vl-3b-instruct  # 请以 DashScope 平台最新文档为准
 ```
 
 然后直接运行第七章脚本即可，不需要任何 GPU。
 
-## 五、本书代码依赖总览
+## 六、本书代码依赖总览
 
 | 章节 | 核心依赖 | 大小 | 说明 |
 |---|---|---|---|
@@ -108,7 +117,7 @@ MODEL_ID=qwen2.5-vl-3b-instruct
 
 **建议**：先走 API 路线跑通第七~九章，建立手感后再决定是否本地部署。
 
-## 六、常见问题
+## 七、常见问题
 
 ### Q：Mac（M 系列芯片）能跑吗？
 A：能。MPS 后端支持大部分操作，但大模型推理速度通常不如 NVIDIA GPU。建议用 API 方案，或跑较小模型（如 Qwen2.5-VL-3B）。
@@ -121,10 +130,10 @@ A：主要有两处：
 ### Q：需要多少钱？
 A：如果只用免费额度 + 本地跑 3B 小模型，成本接近零。后续如果要微调大模型或高频调用 API，才需要考虑预算。
 
-## 七、本章小结
+## 八、本章小结
 
 - **最低门槛**：Python 基础 + 能装 pip 包
 - **两条路线**：有 GPU → 本地推理；无 GPU → API 方案
 - **推荐顺序**：先 API 跑通 → 建立手感 → 再决定是否本地部署
 
-准备好环境后，从 [前言](./前言.md) 开始阅读，或跳过理论直接从 [第七章](./chapter7/第七章%20动手跑通你的第一个%20VLM.md) 动手。
+准备好环境后，继续阅读 [第一章 多模态大模型概览](./chapter1/第一章%20多模态大模型概览.md)，或返回 [前言](./前言.md) 查看完整阅读路线。

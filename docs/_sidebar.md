@@ -1,6 +1,6 @@
 - [Start-MLLM](./README.md)
-  - [Chapter 0 环境准备](./chapter0-环境准备.md)
   - [前言](./前言.md)
+  - [Chapter 0 环境准备](./chapter0-环境准备.md)
   - [术语表](./术语表.md)
 
 - <strong>理论篇（第 1～4 章）</strong>
