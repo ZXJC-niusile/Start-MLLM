@@ -4,6 +4,12 @@
 
 这是一份面向中文学习者的多模态大模型教程。全书按**理论篇**与**实战篇**两层组织（详见 [前言](./前言.md)「理论篇与实战篇」），在线阅读的侧边栏也按同一结构分组。
 
+## 前置速通
+
+只有 Python 基础？先花 30 分钟读完 [LLM 基础速通](./llm-基础速通.md)，补齐 Transformer、Token、Embedding、自回归生成等核心概念，再进入正文。
+
+> 需要更系统的前置补课？推荐 Datawhale 社区课程：[聪明办法学 Python](https://github.com/datawhalechina/learn-python-the-smart-way-v2) · [thorough-pytorch](https://github.com/datawhalechina/thorough-pytorch) · [base-llm](https://github.com/datawhalechina/base-llm) · [self-llm](https://github.com/datawhalechina/self-llm)
+
 ## 理论篇（第 1～4 章）
 
 侧重**读懂**：任务地图、视觉 token 与对齐、生成式架构、数据配方与微调决策。第 4 章含 JSONL 与校验脚本，重在格式与质量意识，不必等同于「立刻训大模型」。
@@ -35,7 +41,7 @@
 
 ## 阅读建议（与分册交叉）
 
-- **零基础**：前言（能力清单 + 理论/实战表）→ 理论篇 1→2→3 → 实战篇 7（可与理论篇 4 穿插）
+- **零基础**：前言 → [LLM 基础速通](./llm-基础速通.md) → 理论篇 1→2→3 → 实战篇 7（可与理论篇 4 穿插）
 - **有 LLM 基础**：理论篇 1 速读 → 2→3→4 → 实战篇 5→6→7→8
 - **偏工程**：实战篇 5→6→7→8→9，卡住再回理论篇 2、3
 

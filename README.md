@@ -61,6 +61,7 @@
 - [Docs 首页](./docs/README.md)
 - [前言](./docs/前言.md)
 - [Chapter 0 环境准备](./docs/chapter0-环境准备.md)
+- [LLM 基础速通](./docs/llm-基础速通.md)
 
 ## 目录
 

@@ -130,10 +130,13 @@ A：主要有两处：
 ### Q：需要多少钱？
 A：如果只用免费额度 + 本地跑 3B 小模型，成本接近零。后续如果要微调大模型或高频调用 API，才需要考虑预算。
 
+### Q：我连命令行都不太熟，能跟上吗？
+A：能。本教程用到的命令行操作只有 `pip install`、`python xxx.py`、`set/export` 环境变量这几种，全部可以复制粘贴。如果你想花 10 分钟系统了解一下，推荐看 [菜鸟教程 - 命令行入门](https://www.runoob.com/w3cnote/linux-common-command-2.html)（Linux/macOS）或 [Microsoft 官方 PowerShell 入门](https://learn.microsoft.com/zh-cn/powershell/scripting/learn/ps101/01-getting-started)（Windows）。
+
 ## 八、本章小结
 
 - **最低门槛**：Python 基础 + 能装 pip 包
 - **两条路线**：有 GPU → 本地推理；无 GPU → API 方案
 - **推荐顺序**：先 API 跑通 → 建立手感 → 再决定是否本地部署
 
-准备好环境后，继续阅读 [第一章 多模态大模型概览](./chapter1/第一章%20多模态大模型概览.md)，或返回 [前言](./前言.md) 查看完整阅读路线。
+准备好环境后，如果你还不熟悉 Transformer、Embedding、自回归生成等 LLM 基础概念，建议先读 [LLM 基础速通](./llm-基础速通.md)（约 30 分钟），再进入 [第一章 多模态大模型概览](./chapter1/第一章%20多模态大模型概览.md)。已有基础的读者可直接跳过。
