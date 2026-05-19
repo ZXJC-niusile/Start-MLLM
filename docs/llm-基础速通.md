@@ -4,7 +4,7 @@
 
 如果你只有 Python 基础，对 Transformer、Embedding、自回归生成这些概念还不熟悉，花 30 分钟读完本章就够了。我们只讲**后续章节会直接用到**的概念，不展开数学推导。
 
-> **想更系统地补课？** 本教程属于 [Datawhale](https://github.com/datawhalechina) 开源社区，社区内有更完整的前置课程：[聪明办法学 Python](https://github.com/datawhalechina/learn-python-the-smart-way-v2)、[thorough-pytorch](https://github.com/datawhalechina/thorough-pytorch)、[base-llm：从 NLP 到 LLM](https://github.com/datawhalechina/base-llm)。本章已覆盖后续所需的最小知识量，上述课程供按需深入。
+> **想更系统地补课？** 本教程属于 [Datawhale](https://github.com/datawhalechina) 开源社区，社区内有更完整的前置课程：[聪明办法学 Python](https://github.com/datawhalechina/learn-python-the-smart-way-v2)、[thorough-pytorch](https://github.com/datawhalechina/thorough-pytorch)、[base-llm：从 NLP 到 LLM](https://github.com/datawhalechina/base-llm)、[self-llm：开源大模型食用指南](https://github.com/datawhalechina/self-llm)。本章已覆盖后续所需的最小知识量，上述课程供按需深入。
 
 ## 一、Transformer：LLM 的底层架构
 

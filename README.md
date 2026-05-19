@@ -56,12 +56,16 @@
 
 ## 在线阅读
 
-当前仓库以本地 Markdown 阅读为主，你可以从以下入口开始：
+📖 **在线地址**：[https://datawhalechina.github.io/start-mllm/](https://datawhalechina.github.io/start-mllm/#/)
+
+你也可以从以下入口本地阅读：
 
 - [Docs 首页](./docs/README.md)
 - [前言](./docs/前言.md)
 - [Chapter 0 环境准备](./docs/chapter0-环境准备.md)
 - [LLM 基础速通](./docs/llm-基础速通.md)
+
+> 需要更系统的前置补课？推荐 Datawhale 社区课程：[聪明办法学 Python](https://github.com/datawhalechina/learn-python-the-smart-way-v2) · [thorough-pytorch](https://github.com/datawhalechina/thorough-pytorch) · [base-llm](https://github.com/datawhalechina/base-llm) · [self-llm](https://github.com/datawhalechina/self-llm)
 
 ## 目录
 
