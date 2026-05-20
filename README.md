@@ -1,4 +1,7 @@
 <div align="center">
+  <img src="./docs/images/banner.png" width="100%" alt="Start-MLLM Banner">
+  <br>
+
   <h1>Start-MLLM（⚠️ Alpha内测版）</h1>
   <h3>从零开始学习多模态大模型</h3>
   <p><em>从概念、架构、训练到部署，系统搭建你的第一套 MLLM 知识体系</em></p>
