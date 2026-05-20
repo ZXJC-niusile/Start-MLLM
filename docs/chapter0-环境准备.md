@@ -1,7 +1,7 @@
 # Chapter 0 环境准备与前置说明
 
 > 如果你已有 Python + PyTorch 环境，可跳过本章直接读 [前言](./前言.md)。
-> 如果你没有 GPU，也不用担心，第七章提供「纯 API 方案」，有网就能跑。
+> 如果你没有 GPU，也不用担心，第七章提供“纯 API 方案”，有网就能跑。
 
 ## 一、你需要准备什么
 
@@ -16,7 +16,7 @@
 - 对 Transformer、Token、Embedding 的初步认知
 - 调通过 LLM 推理
 
-如果暂时不熟悉，先按「概念优先、代码其次」读，后面逐步补齐。
+如果暂时不熟悉，先按“概念优先、代码其次”读，后面逐步补齐。
 
 ## 二、获取教程代码
 
@@ -124,7 +124,7 @@ A：能。MPS 后端支持大部分操作，但大模型推理速度通常不如
 
 ### Q：Windows 和 Linux 命令有区别吗？
 A：主要有两处：
-- 设置环境变量：`set VAR=value`（Windows） vs `export VAR=value`（Linux/macOS）
+- 设置环境变量：`$env:VAR="value"`（Windows PowerShell） vs `export VAR=value`（Linux/macOS）；若使用 Windows cmd 则写 `set VAR=value`
 - 路径分隔符：`\`（Windows） vs `/`（Linux/macOS），但 Python 的 `pathlib` 已自动处理
 
 ### Q：需要多少钱？
