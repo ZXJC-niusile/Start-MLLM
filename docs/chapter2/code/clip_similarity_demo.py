@@ -13,7 +13,7 @@
     首次运行会自动下载 openai/clip-vit-base-patch32（约 600MB）。
     如果网络受限，可先用 HF-Mirror：
         export HF_ENDPOINT=https://hf-mirror.com   # Linux/macOS
-        set HF_ENDPOINT=https://hf-mirror.com      # Windows
+        $env:HF_ENDPOINT = "https://hf-mirror.com"  # Windows (PowerShell)
 """
 
 from pathlib import Path
@@ -32,8 +32,8 @@ def main():
     # 2. 准备图片（用占位图或你自己的图片）
     # 如果没有图片，先运行 docs/chapter4/code/create_placeholder_images.py 生成一张
     img_candidates = [
-        Path(__file__).with_name("sample_image.png"),
-        Path(__file__).parents[2] / "chapter4" / "code" / "images" / "sample_image_000.png",
+        Path(__file__).with_name("sample_receipt.png"),
+        Path(__file__).parents[2] / "chapter4" / "code" / "images" / "sample_receipt.png",
         Path("cat.jpg"),
     ]
     image_path = None
