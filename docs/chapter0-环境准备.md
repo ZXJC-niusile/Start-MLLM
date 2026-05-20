@@ -25,6 +25,8 @@ git clone https://github.com/datawhalechina/start-mllm.git
 cd start-mllm
 ```
 
+如果你暂时不会用 `git`，也可以在 GitHub 仓库页面点击 `Code` → `Download ZIP`，解压后进入 `start-mllm` 目录继续阅读和运行脚本。
+
 后续章节中的脚本路径均以仓库根目录为基准。
 
 ## 三、Python 环境安装（最小路径）
@@ -50,15 +52,21 @@ python --version   # 应显示 3.10.x
 
 如果你有一块 NVIDIA 显卡，且希望本地跑模型，按下面检查：
 
+> 如果当前环境里还没有安装 `torch`，先完成下方“PyTorch GPU 版安装（如需）”，再回到这里做自检；否则会先报 `ModuleNotFoundError: No module named 'torch'`。
+
 ```bash
 # 检查 CUDA 是否可用
 python -c "import torch; print(torch.cuda.is_available())"
-
-# 检查 GPU 型号与显存
-python -c "import torch; print(torch.cuda.get_device_name(0)); print(torch.cuda.get_device_properties(0).total_memory / 1024**3, 'GB')"
 ```
 
 输出 `True` 且显存 ≥ 8GB，即可跑第七章的本地推理示例（Qwen2.5-VL-3B FP16 精度下约需 6~8GB）。
+
+只有当上一条命令输出 `True` 时，再继续执行下面这条，否则会直接报错：
+
+```bash
+# 仅在 CUDA 可用时执行：检查 GPU 型号与显存
+python -c "import torch; print(torch.cuda.get_device_name(0)); print(torch.cuda.get_device_properties(0).total_memory / 1024**3, 'GB')"
+```
 
 如果输出 `False`，有三种可能：
 1. 没有 NVIDIA 显卡 → 用第七章的 **API 方案**
@@ -78,6 +86,8 @@ cu121 表示 CUDA 12.1，仅为示例。实际安装时请到 https://pytorch.or
 这是**完全可行的路径**，很多读者全程用 API 学完本教程。
 
 ### 免费或低成本 API 选项（截至本文更新时）
+
+> 最后核验日期：2026-05-20。额度、价格和模型可用性变化较快，以下内容仅作入门参考；请在实际使用前以各平台官方页面与最新文档为准。
 
 | 平台 | 额度 | 特点 | 适用章节 |
 |---|---|---|---|
@@ -131,7 +141,7 @@ A：主要有两处：
 A：如果只用免费额度 + 本地跑 3B 小模型，成本接近零。后续如果要微调大模型或高频调用 API，才需要考虑预算。
 
 ### Q：我连命令行都不太熟，能跟上吗？
-A：能。本教程用到的命令行操作只有 `pip install`、`python xxx.py`、`set/export` 环境变量这几种，全部可以复制粘贴。如果你想花 10 分钟系统了解一下，推荐看 [菜鸟教程 - 命令行入门](https://www.runoob.com/w3cnote/linux-common-command-2.html)（Linux/macOS）或 [Microsoft 官方 PowerShell 入门](https://learn.microsoft.com/zh-cn/powershell/scripting/learn/ps101/01-getting-started)（Windows）。
+A：能。本教程主要会用到 `git clone`、`cd`、`conda create`、`pip install`、`python xxx.py`、以及设置环境变量这几类命令，基本都可以复制粘贴。如果你想花 10 分钟系统了解一下，推荐看 [菜鸟教程 - 命令行入门](https://www.runoob.com/w3cnote/linux-common-command-2.html)（Linux/macOS）或 [Microsoft 官方 PowerShell 入门](https://learn.microsoft.com/zh-cn/powershell/scripting/learn/ps101/01-getting-started)（Windows）。
 
 ## 八、本章小结
 

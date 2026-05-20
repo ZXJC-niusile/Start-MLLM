@@ -1,18 +1,17 @@
-# Start-MLLM
+# 阅读导航
 
-欢迎来到 `Start-MLLM`。
+在线阅读首页已调整为 [前言](./前言.md)。本页保留为辅助导航，方便你快速跳到不同分册。
 
-这是一份面向中文学习者的多模态大模型教程。全书按**理论篇**与**实战篇**两层组织（详见 [前言](./前言.md)“理论篇与实战篇”），在线阅读的侧边栏也按同一结构分组。
+## 预备篇
 
-## 前置速通
-
-只有 Python 基础？先花 30 分钟读完 [LLM 基础速通](./llm-基础速通.md)，补齐 Transformer、Token、Embedding、自回归生成等核心概念，再进入正文。
-
-> 需要更系统的前置补课？推荐 Datawhale 社区课程：[聪明办法学 Python](https://github.com/datawhalechina/learn-python-the-smart-way-v2) · [thorough-pytorch](https://github.com/datawhalechina/thorough-pytorch) · [base-llm](https://github.com/datawhalechina/base-llm) · [self-llm](https://github.com/datawhalechina/self-llm)
+| 分册 | 入口 |
+| --- | --- |
+| 前言 | [全书导读](./前言.md) |
+| Chapter 0 | [环境准备](./chapter0-环境准备.md) |
+| 基础速通 | [LLM 基础速通](./llm-基础速通.md) |
+| 术语表 | [术语速查](./术语表.md) |
 
 ## 理论篇（第 1～4 章）
-
-侧重**读懂**：任务地图、视觉 token 与对齐、生成式架构、数据配方与微调决策。第 4 章含 JSONL 与校验脚本，重在格式与质量意识，不必等同于“立刻训大模型”。
 
 | 章节 | 入口 |
 | --- | --- |
@@ -22,8 +21,6 @@
 | 第四章 | [数据、训练与微调](./chapter4/第四章%20数据、训练与微调.md) |
 
 ## 实战篇（第 5～10 章）
-
-侧重**验收与落地**：评测、部署观测、推理脚本、Gradio Demo、多模态 Agent、以及全书路线收束。
 
 | 章节 | 入口 |
 | --- | --- |
@@ -36,31 +33,7 @@
 
 ## 扩展与专题
 
-- [扩展阅读](./扩展阅读.md)（Extra 与正文穿插顺序）
-- [Extra-Chapter 总览](./Extra-Chapter/README.md)
-
-## 阅读建议（与分册交叉）
-
-- **零基础**：前言 → [LLM 基础速通](./llm-基础速通.md) → 理论篇 1→2→3 → 实战篇 7（可与理论篇 4 穿插）
-- **有 LLM 基础**：理论篇 1 速读 → 2→3→4 → 实战篇 5→6→7→8
-- **偏工程**：实战篇 5→6→7→8→9，卡住再回理论篇 2、3
-
-## 这份教程解决什么问题
-
-1. 模型名词很多，但不知道每个模块在系统里扮演什么角色。（**理论篇**）
-2. 知道能“看图说话”，但不知道数据、训练、部署怎么落地。（**理论篇 + 实战篇**）
-3. 会调 API，但不会把多模态接入自己的应用或 Agent。（**实战篇**）
-
-阅读方式：先抓分册主线，每章做 1～2 道章末练习；第四章、第五章及第七～九章配有脚手架，可作为你自有项目的起点。
-
-## 配套脚手架（实战篇为主，第四章为格式实验）
-
-- 第四章：`create_placeholder_images.py`、SFT 样例 JSONL、`prepare_dataset_manifest.py`
-- 第五章：占位图脚本、`eval_vlm_dataset.py`（`-h` / `--dataset`）、`summarize_eval_results.py`（评测汇总 / 对照表）、`sample_eval_results_output.jsonl`（示例评测输出，可离线试汇总）
-- 第七章：`Transformers` + OpenAI 客户端、`docs/learner_paths.py`
-- 第八章：Gradio `app.py`
-- 第九章：`agent_workflow_demo.py`
-
-更细的“第一周怎么迭代”见 [前言](./前言.md) 中“学习者视角：第一周可以怎么迭代”。
-
-路径解析：第七、九章脚本依赖仓库内 [`learner_paths.py`](./learner_paths.py)（置于 `docs/`），用于在多种当前工作目录下解析 `IMAGE_PATH`；勿单独移动该文件除非同步改各脚本的 `sys.path`。
+| 类型 | 入口 |
+| --- | --- |
+| 扩展阅读 | [正文与 Extra 穿插顺序](./扩展阅读.md) |
+| Extra-Chapter | [专题总览](./Extra-Chapter/README.md) |

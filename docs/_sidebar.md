@@ -1,4 +1,6 @@
 - [Start-MLLM](./README.md)
+
+- <strong>预备篇</strong>
   - [前言](./前言.md)
   - [Chapter 0 环境准备](./chapter0-环境准备.md)
   - [LLM 基础速通](./llm-基础速通.md)

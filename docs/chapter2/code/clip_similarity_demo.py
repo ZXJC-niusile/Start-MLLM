@@ -49,13 +49,13 @@ def main():
     image = Image.open(image_path).convert("RGB")
     print(f"Using image: {image_path}")
 
-    # 3. 候选文本
+    # 3. 候选文本（与默认票据占位图保持一致，避免示例语义错配）
     texts = [
-        "a photo of a cat",
-        "a photo of a dog",
-        "a photo of a car",
+        "a receipt",
+        "an invoice",
         "a screenshot of a website",
         "a document with text",
+        "a product photo",
     ]
 
     # 4. 编码
