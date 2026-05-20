@@ -58,7 +58,7 @@
 
 📖 **在线地址**：[https://datawhalechina.github.io/start-mllm/](https://datawhalechina.github.io/start-mllm/#/)
 
-建议首次阅读直接从 [前言](./docs/前言.md) 开始；在线阅读首页也已调整为前言。
+建议首次阅读直接从 [前言](./docs/前言.md) 开始。
 
 > 需要更系统的前置补课？推荐 Datawhale 社区课程：[聪明办法学 Python](https://github.com/datawhalechina/learn-python-the-smart-way-v2) · [thorough-pytorch](https://github.com/datawhalechina/thorough-pytorch) · [base-llm](https://github.com/datawhalechina/base-llm) · [self-llm](https://github.com/datawhalechina/self-llm)
 
