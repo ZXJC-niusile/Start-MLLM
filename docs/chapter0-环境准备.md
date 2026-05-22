@@ -33,7 +33,7 @@ cd start-mllm
 
 ### 1. 安装 Miniconda
 
-访问 https://www.anaconda.com/docs/getting-started/miniconda/main 下载对应系统的安装包，按向导安装即可。
+访问 https://www.anaconda.com/docs/getting-started/miniconda/main 下载对应系统的安装包，按向导安装即可。若链接失效可直接搜索 "Miniconda download"。
 
 ### 2. 创建隔离环境
 
