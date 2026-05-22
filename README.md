@@ -82,7 +82,7 @@
 | ---- | ---- | ---- |
 | [第一章 多模态大模型概览](./docs/chapter1/第一章%20多模态大模型概览.md) | 建立任务地图，理解多模态能力边界与常见误区 | ✅ |
 | [第二章 视觉编码器与跨模态对齐](./docs/chapter2/第二章%20视觉编码器与跨模态对齐.md) | 理解视觉 token、CLIP、对齐训练与输入表示 | ✅ |
-| [第三章 多模态生成架构](./docs/chapter3/第三章%20多模态生成架构.md) | 理解 BLIP-2、LLaVA 与主流生成式架构路线 | ✅ |
+| [第三章 多模态生成架构](./docs/chapter3/第三章%20多模态生成架构.md) | 四大架构路线（双塔/Connector/Cross-Attention/原生统一）、手搓 Projector 与训练范式 | ✅ |
 | [第四章 数据、训练与微调](./docs/chapter4/第四章%20数据、训练与微调.md) | 了解数据格式、训练流程、LoRA/QLoRA 与最小微调闭环 | ✅ |
 
 ### 实战篇（第 5～10 章）
@@ -112,9 +112,18 @@
 
 ## 参与贡献
 
-- 如果你发现内容错误、表达不清或代码问题，欢迎提 Issue 反馈。
-- 如果你想补充章节、修正示例、完善脚手架，欢迎提 Pull Request。
-- 如果你正在学习 MLLM，也欢迎把你的阅读建议、踩坑记录或改进想法分享出来，一起把这个项目打磨得更顺手。
+我们欢迎任何形式的参与，每一条 Issue 和 PR 都会让这份教程变得更好：
+
+- **报告 Bug**：发现内容错误、表达不清、代码跑不通？直接提 [Issue](https://github.com/datawhalechina/start-mllm/issues)，我们会尽快处理。
+- **提出建议**：对章节结构、学习路径、内容深度有想法？欢迎在 Discussion 或 Issue 中交流。
+- **完善内容**：修正示例、补充解释、优化脚手架？欢迎提 Pull Request。
+- **贡献实战经验**：把你日常使用 MLLM 的踩坑记录、场景适配经验、评测心得整理成文档，贡献到 `Extra-Chapter`。像社区博客一样，让后来者少走弯路。
+
+> 新手友好：不确定怎么提 PR？参考 [Datawhale 如何参与开源](https://github.com/datawhalechina/how-to-join-in-open-source)。
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=datawhalechina/start-mllm&type=Date)](https://star-history.com/#datawhalechina/start-mllm&Date)
 
 ## 关注我们
 
