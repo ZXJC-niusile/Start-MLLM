@@ -7,6 +7,8 @@
 依赖安装（与 requirements-api.txt 不冲突，需要 torch）：
     pip install torch transformers accelerate peft datasets pillow
 
+最低版本要求：transformers >= 4.45（Qwen2.5-VL 模型支持）
+
 运行前准备：
     1. 准备自己的图文数据，格式同 sample_multimodal_sft.jsonl
     2. 修改下面 DATA_PATH 指向你的 JSONL
@@ -15,6 +17,7 @@
 
 import json
 import os
+import warnings
 from pathlib import Path
 
 import torch
@@ -22,11 +25,22 @@ from datasets import Dataset
 from peft import LoraConfig, get_peft_model
 from PIL import Image
 from transformers import (
-    AutoModelForVision2Seq,
     AutoProcessor,
+    Qwen2_5_VLForConditionalGeneration,
     TrainingArguments,
     Trainer,
+    __version__ as transformers_version,
 )
+
+_TRANSFORMERS_MIN = "4.45"
+_TRANSFORMERS_VER_TUPLE = tuple(int(x) for x in _TRANSFORMERS_MIN.split("."))
+_TRANSFORMERS_CUR_TUPLE = tuple(int(x) for x in transformers_version.split(".")[:2])
+if _TRANSFORMERS_CUR_TUPLE < _TRANSFORMERS_VER_TUPLE:
+    warnings.warn(
+        f"当前 transformers 版本为 {transformers_version}，建议升级到 >= {_TRANSFORMERS_MIN} 以确保 Qwen2.5-VL 兼容。"
+        f"运行：pip install --upgrade transformers",
+        stacklevel=1,
+    )
 
 
 # ======================== 用户配置区 ========================
@@ -75,7 +89,9 @@ def format_for_qwen25vl(sample: dict) -> dict:
         base = DATA_PATH.parent
         img_path = base / img_path
 
-    image = Image.open(img_path).convert("RGB") if Path(img_path).exists() else None
+    if not Path(img_path).exists():
+        return None  # 标记为无效样本，由 SimpleMultimodalDataset 过滤
+    image = Image.open(img_path).convert("RGB")
 
     conversations = []
     for msg in sample.get("messages", []):
@@ -95,22 +111,25 @@ def format_for_qwen25vl(sample: dict) -> dict:
 
 def collate_fn(batch, processor, device):
     """
-    把一批样本拼成模型输入。
+    把一批样本拼成模型输入（含 labels）。
     这里用最简单的方式：单条独立编码，后续可用更高效的 batch 策略。
     """
-    # 为简化，Trainer 里我们直接用单条处理 + gradient accumulation
-    # 实际项目中建议用 DataCollatorForSeq2Seq 或自定义 batch 逻辑
     texts = []
     images = []
+    # 预计算每条样本中 assistant 回复的起始字符位置（用于构造 labels）
+    assistant_start_chars = []
     for item in batch:
         conv = item["conversations"]
-        # 简单把对话拼成一段文本（此处为简化演示，生产环境务必使用 apply_chat_template）
         text = ""
+        asst_start = 0
         for c in conv:
             prefix = "User: " if c["from"] == "human" else "Assistant: "
+            if c["from"] == "gpt" and asst_start == 0:
+                asst_start = len(text)
             text += prefix + c["value"] + "\n"
         texts.append(text.strip())
         images.append(item["image"])
+        assistant_start_chars.append(asst_start)
 
     # processor 处理图文输入
     inputs = processor(
@@ -121,13 +140,37 @@ def collate_fn(batch, processor, device):
         truncation=True,
         max_length=MAX_SEQ_LEN,
     ).to(device)
+
+    # 构造 labels：复制 input_ids，将非 assistant 回复部分 mask 为 -100
+    # 这样 Trainer 只在 assistant 回复上计算 loss，不会学习"复读"用户问题
+    labels = inputs["input_ids"].clone()
+    pad_token_id = getattr(processor.tokenizer, "pad_token_id", None)
+    for i, asst_start in enumerate(assistant_start_chars):
+        # 通过 tokenizer 找到 assistant 回复在 token 序列中的起始位置
+        prompt_enc = processor.tokenizer(
+            texts[i][:asst_start], return_tensors=None, truncation=True, max_length=MAX_SEQ_LEN
+        )
+        prompt_len = len(prompt_enc["input_ids"])
+        # 将 prompt 部分（含 image tokens）mask 为 -100
+        labels[i, :prompt_len] = -100
+        # 将 padding 部分 mask 为 -100
+        if pad_token_id is not None:
+            labels[i, inputs["input_ids"][i] == pad_token_id] = -100
+
+    inputs["labels"] = labels
     return inputs
 
 
 class SimpleMultimodalDataset(torch.utils.data.Dataset):
     """极简 Dataset，返回格式化后的单条样本。"""
     def __init__(self, samples: list[dict]):
-        self.samples = [format_for_qwen25vl(s) for s in samples]
+        formatted = [format_for_qwen25vl(s) for s in samples]
+        # 过滤掉图片缺失的样本
+        before_count = len(formatted)
+        self.samples = [s for s in formatted if s is not None]
+        skipped = before_count - len(self.samples)
+        if skipped > 0:
+            print(f"[警告] 跳过 {skipped} 条图片缺失的样本（共 {before_count} 条）")
 
     def __len__(self):
         return len(self.samples)
@@ -148,7 +191,7 @@ def main():
     # 1. 加载模型和 processor
     print(f"\nLoading model: {MODEL_ID}")
     processor = AutoProcessor.from_pretrained(MODEL_ID, trust_remote_code=True)
-    model = AutoModelForVision2Seq.from_pretrained(
+    model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
         MODEL_ID,
         torch_dtype=torch.bfloat16,
         device_map="auto",

@@ -33,6 +33,7 @@ def main() -> None:
     save_solid_png(root / "sample_receipt.png", 360, 480, 250, 248, 240)
     save_solid_png(root / "sample_error.png", 320, 200, 255, 225, 225)
     save_solid_png(root / "sample_product.png", 400, 400, 245, 245, 250)
+    save_solid_png(root / "sample_chart.png", 480, 320, 230, 240, 255)
     print(f"OK: wrote placeholder PNGs under {root}")
 
 

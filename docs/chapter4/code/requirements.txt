@@ -1,0 +1,6 @@
+torch
+transformers
+accelerate
+peft
+datasets
+pillow
