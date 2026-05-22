@@ -81,7 +81,49 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 cu121 表示 CUDA 12.1，仅为示例。实际安装时请到 https://pytorch.org/get-started/locally/ 根据你的 CUDA 版本选择对应的命令。
 
-## 五、没有 GPU 怎么办（API 方案）
+## 五、多模态硬件排雷与显存估算
+
+很多同学在本地跑纯文本 LLM 时一切顺利，一换成多模态大模型就频繁 OOM（Out of Memory）。这一节帮你提前排雷，搞清楚显存到底被谁吃掉了。
+
+### 为什么多模态模型特别容易 OOM
+
+纯文本 LLM 的显存占用主要取决于模型参数量和序列长度。但多模态模型在此基础上额外增加了两个"大户"：
+
+1. **视觉编码器参数**：ViT 本身也是几亿参数的模型，推理时需要加载到显存。
+2. **视觉 Token 拉长序列**：一张 448×448 的图片，经过 patch 切分后可能产生 256~1024 个视觉 token；如果是高分辨率图片（如 1344×1344），token 数可能飙到 **2000~3000+**。这些 token 全部要参与 LLM 的注意力计算，KV Cache 会随 token 数线性增长。
+
+### 显存估算公式（粗略）
+
+```
+总显存 ≈ 模型参数显存 + KV Cache 显存 + 视觉编码器显存 + 激活值/碎片
+
+其中：
+  模型参数显存 ≈ 参数量(B) × 每参数字节数（FP16=2 字节, INT4≈0.5 字节）
+  KV Cache 显存 ≈ 2 × 层数 × hidden_dim × 序列长度 × batch_size × 每参数字节数
+  # 2 = Key + Value 两组缓存；对 Qwen2.5-VL-3B：层数≈36，hidden_dim≈2048
+  视觉编码器显存 ≈ ViT 参数量 × 每参数字节数
+```
+
+**举个例子**：Qwen2.5-VL-3B（FP16）
+- 模型参数：3B × 2 字节/参数 ≈ 6GB
+- 视觉编码器：约 0.3~0.6GB
+- KV Cache（单张图 1000 token）：约 0.5~1GB
+- 总计：约 7~8GB
+
+如果换成 7B 模型，或输入高分辨率大图，显存轻松突破 16GB。
+
+### 国产与 Mac 硬件速览
+
+| 硬件 | 多模态现状 | 建议 |
+|---|---|---|
+| **NVIDIA GPU** | 生态最完善，Transformers / vLLM 原生支持 | 首选方案 |
+| **Mac M 系列（MPS）** | 可跑小模型（3B），速度较慢，部分算子兼容性不完美 | 学习体验可以，高频推理不推荐 |
+| **昇腾（Ascend）** | 需要适配 MindSpore 或 CANN，部分开源模型已有支持 | 企业级部署可关注，个人学习门槛较高 |
+| **纯 CPU** | 极慢，仅适合极小模型体验 | 不推荐，优先走 API 方案 |
+
+**一句话建议**：如果你的显存 < 8GB，强烈建议先走 API 方案（见下一节），等确认需求后再考虑升级硬件。
+
+## 六、没有 GPU 怎么办（API 方案）
 
 这是**完全可行的路径**，很多读者全程用 API 学完本教程。
 
@@ -114,7 +156,7 @@ MODEL_ID=qwen2.5-vl-3b-instruct  # 请以 DashScope 平台最新文档为准
 
 然后直接运行第七章脚本即可，不需要任何 GPU。
 
-## 六、本书代码依赖总览
+## 七、本书代码依赖总览
 
 | 章节 | 核心依赖 | 大小 | 说明 |
 |---|---|---|---|
@@ -127,7 +169,7 @@ MODEL_ID=qwen2.5-vl-3b-instruct  # 请以 DashScope 平台最新文档为准
 
 **建议**：先走 API 路线跑通第七~九章，建立手感后再决定是否本地部署。
 
-## 七、常见问题
+## 八、常见问题
 
 ### Q：Mac（M 系列芯片）能跑吗？
 A：能。MPS 后端支持大部分操作，但大模型推理速度通常不如 NVIDIA GPU。建议用 API 方案，或跑较小模型（如 Qwen2.5-VL-3B）。
@@ -143,7 +185,7 @@ A：如果只用免费额度 + 本地跑 3B 小模型，成本接近零。后续
 ### Q：我连命令行都不太熟，能跟上吗？
 A：能。本教程主要会用到 `git clone`、`cd`、`conda create`、`pip install`、`python xxx.py`、以及设置环境变量这几类命令，基本都可以复制粘贴。如果你想花 10 分钟系统了解一下，推荐看 [菜鸟教程 - 命令行入门](https://www.runoob.com/w3cnote/linux-common-command-2.html)（Linux/macOS）或 [Microsoft 官方 PowerShell 入门](https://learn.microsoft.com/zh-cn/powershell/scripting/learn/ps101/01-getting-started)（Windows）。
 
-## 八、本章小结
+## 九、本章小结
 
 - **最低门槛**：Python 基础 + 能装 pip 包
 - **两条路线**：有 GPU → 本地推理；无 GPU → API 方案
